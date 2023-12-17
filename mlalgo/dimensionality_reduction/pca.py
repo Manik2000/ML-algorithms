@@ -1,7 +1,5 @@
 import numpy as np
 
-from ..utils.helper_functions import covariance_matrix 
-
 
 class PCA:
     def __init__(self, n_components):
