@@ -25,4 +25,4 @@ class PCA:
 
     def fit_transform(self, X):
         self.fit(X)
-        self.transform(X)
+        return self.transform(X)

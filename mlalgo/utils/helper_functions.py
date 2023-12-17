@@ -11,3 +11,8 @@ def covariance_matrix(X, Y=None, rowvar=False):
     mean_x = np.mean(X, axis=0)
     mean_y = np.mean(Y, axis=0)
     return (X - mean_x) @ (Y - mean_y).T / (X.shape[0] - 1)
+
+
+def standardize(X):
+    """Returns the standardized version of X"""
+    return (X - np.mean(X, axis=0)) / np.std(X, axis=0)
