@@ -2,7 +2,6 @@ import numpy as np
 
 
 class KMeans:
-
     def __init__(self, n_clusters, max_iter=300):
         self.n_clusters = n_clusters
         self.max_iter = max_iter
@@ -17,14 +16,14 @@ class KMeans:
 
     def predict(self, X):
         return self._assign_clusters(X)
-    
+
     def fit_predict(self, X):
         return self.fit(X).predict(X)
-    
+
     def _assign_clusters(self, X):
         distances = np.linalg.norm(X[:, np.newaxis] - self.centroids, axis=2)
         return np.argmin(distances, axis=1)
-    
+
     def _update_centroids(self, X, clusters):
         for i in range(self.n_clusters):
             self.centroids[i] = np.mean(X[clusters == i], axis=0)
