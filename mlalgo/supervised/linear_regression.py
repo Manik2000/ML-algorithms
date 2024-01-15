@@ -2,7 +2,8 @@ import numpy as np
 
 
 class LinearRegression:
-    def __init__(self):
+    def __init__(self, fit_intercept=True):
+        self.fit_intercept = fit_intercept
         self.theta = None
 
     def fit(self, X, Y):
@@ -13,7 +14,10 @@ class LinearRegression:
         X - np.array, shape = (n, m)
         Y - np.array, shape = (n)
         """
-        self.extended_X = np.hstack([np.ones((len(X), 1)), X])
+        if self.fit_intercept:
+            self.extended_X = np.hstack([np.ones((len(X), 1)), X])
+        else:
+            self.extended_X = X
         self.theta = np.linalg.solve(
             self.extended_X.T @ self.extended_X, self.extended_X.T @ Y
         )
@@ -25,4 +29,6 @@ class LinearRegression:
 
         X - np.array, shape = (k, m)
         """
-        return np.hstack([np.ones((len(X), 1)), X]) @ self.theta
+        if self.fit_intercept:
+            return np.hstack([np.ones((len(X), 1)), X]) @ self.theta
+        return X @ self.theta
